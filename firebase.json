@@ -1,6 +1,6 @@
 {
-  "firebase": "ucdd2-book",
-  "public": "build",
+  "firebase": "ucdd-4830-004",
+  "public": "src",
   "ignore": [
     "firebase.json",
     "**/.*",

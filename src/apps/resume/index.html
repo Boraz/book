@@ -1,48 +1,153 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-    <body>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-
-      <div class="container">
-
-        <h1>Tom Yeh</h1>
-
-        <h2>Favorite Programming Languages</h2>
-        <ul class="collection">
-          <li class="collection-item">Javascript</li>
-          <li class="collection-item">Haskell</li>
-        </ul>
-
-        <h2>Favorite Food</h2>
-        <ul class="collection" id="foods">
-        </ul>
-
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <link rel="stylesheet" type="text/css" href="resume_DM.css">
+  
+  <div class="navbar">
+    <nav>
+      <div class="nav-wrapper blue-grey" id="SPpark-nav">
+        <!-- the href refreshes the page, but its all daynamic so its only for the user -->
+          <a href="index.html" class="brand-logo center">R&#233;sum&#233;</a>
+            <ul class="right hide-on-small-and-down">
+              <li><a href="/">Home</a></li>
+              <li><a href="subscribe.html">Subscribe</a></li>
+              <li><a href="cities.html">Cities</a></li>
+            </ul>
       </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="card-panel blue-grey darken-1">
+      <p><left id="name">Daniel Maxson</left></p>
+      <p><left class="subtext-name" id=e-mail">Daniel.Maxson@Colorado.edu</left></p>
+      <left class="subtext-name" id="phone">1-719-641-3712</left>
+    </div>
+	
+    <div class="card-panel grey lighten-3 z-depth-1 headers">
+		<b>Education</b>
+	  <div class="col s12 m8 offset-m2 l6 offset-l3 card-panel grey z-depth-1">
+          <div class="row">
+            <div class="col s1">
+			<a href="http://www.colorado.edu/" target="_blank">
+					<img src="img/buffs.png" alt="CU Icon" class="responsive-img hoverable">
+			</a>
+            </div>
+            <div class="col 11">
+                <b>CU Boulder</b><ul class="collection" id="foods"></ul>
+            </div>
+          </div>
+      </div>
+	  <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel z-depth-1">
+          <div class="row">
+            <div class="col s1">
+              <a href="http://www.ppcc.edu/" target="_blank">
+				<img src="img/ppcc.png" alt="PPCC" class="responsive-img hoverable">
+			</a>
+            </div>
+            <div class="col 11">
+                <b>Pikes Peak Community College</b><ul class="collection" id="degree"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+	  </div>
+    
+    <div class="card-panel headers grey lighten-3">
+      <b class="headers">Work Experience</b>
+		<div class="card-panel grey">
+			<p><b>Department of Homeland Security</b></p>
+			<p>Transportation Security Administration</p>
+			Office of Intelligence and Analysis
+		</div>
+		<div class="card-panel">
+			<b>Info Zen</b>
+			<p>DHS contract</p>
+		</div>
+		<div class="card-panel grey">
+			<p><b>The Gallegos Corp.</b></p>
+			Labor / Operator
+		</div>
+    </div>
+	
+	<div class="card-panel headers grey lighten-3">
+        <b>Tasks</b>
+        <ul id="tasks">
+        </ul>
+    </div>
+		
+    </div>
+
+  </div>
 
       <script>
-
         // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
-
-        // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
+        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com/')
+		  ref.child('bio/favorite_foods').once('value', function(snapshot){
+            var foods = snapshot.val()
+            foods.forEach(function(food){
+              $('#foods').append('<li class="collection-item">' + food + '</li>')
+            })
+        })
+		ref.child('bio/degree').once('value', function(snapshot){
+          var degree = snapshot.val()
+          degree.forEach(function(degre){
+            $('#degree').append('<li class="collection-item">' + degre + '</li>')
           })
         })
+		
+		//Button classes are clear and done
+    // create a firebase reference to the root
+    var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
+        // read data from the location bio/tasks, only once
+    ref.child('todo-list/tasks').orderByValue().on('value', function(snapshot) {
+        var tasks = snapshot
+        document.getElementById("tasks").innerHTML = "";
+        snapshot.forEach(function(snapshot) {
+            tasks = snapshot.val()
+            completed = tasks.completed
+            key = snapshot.key()
+            console.log(completed)
+            console.log(key)
+			if (tasks.assignment === "Boraz") {
+                $('#tasks').append('<li class="task-entry">' + tasks.title + ':' + '<li class="task-entry-details">' + 'Due: ' + tasks.due + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + '&nbsp')
+            }
+            })
+    })
+    function makeCompleteButton(completed, task_key){
+        if(completed){
+            return '</li>' + '<a class="waves-effect waves-green completed-button">Completed!</a>' + '</li>' + '<p>&nbsp;</p'
+        }
+        else{
+            return '<div id="target">' + '<a class="btn waves-red incompleted-button" onclick=markAsCompleted("' + key + '")>Mark complete</a>' + '</li>' + '<p>&nbsp;</p>'
+        }
+    }
+    function markAsCompleted(key) {
+        ref.child('todo-list/tasks/' + key).update({
+            completed: true
+        });
+    }
+    </script>
+    <script>
+    $("#add-button").click(function() {
+        console.log("OK")
+            // alert("Handler for .click() called.");
+    });
+		
       </script>
     </body>
-  </html>
+    </html>
